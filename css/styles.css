@@ -1,0 +1,436 @@
+:root {
+  /* ==========================================================================
+     LIGHT MODE PASTEL PALETTE (WCAG Accessible & Colorblind Friendly)
+     ========================================================================== */
+  --c-bg-light:      #FAF8F5; /* Crisp Warm Cream Canvas */
+  --c-bg-gradient:   #F1ECE4; /* Subtle Bottom Gradient Shift */
+  --c-text-main:     #2A2730; /* High-Contrast Deep Charcoal Text */
+  --c-text-muted:    #5E5A66; /* Subtitles & Muted Secondary Text */
+
+  /* Pastel Accent Colors */
+  --c-pink-rose:     #F8D9E2; /* Eyebrows, Badges & Highlights */
+  --c-lavender:      #C3B1E0; /* Active Indicators & Section Numbers */
+  --c-mint:          #B2E0D9; /* Card Borders, Subtitles & Flow Arrows */
+  --c-yellow-cream:  #F3E9B4; /* Accent Fills & Highlighted Pill Cards */
+  --c-coral:         #FFB3B3; /* Warning Indicators & Accents */
+
+  /* Light Glassmorphism Surfaces */
+  --glass-surface: rgba(255, 255, 255, 0.72);
+  --glass-surface-hover: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(195, 177, 224, 0.45);
+  --glass-shadow: 0 16px 32px rgba(42, 39, 48, 0.08);
+
+  /* 1.4.4 Resize text: percentage (not px) so the user's browser default size is respected.
+     accessibility.js changes this value when the A+ / A- buttons are used. */
+  --base-font-size: 100%;
+
+  /* 2.4.7 Focus Visible: ~7:1 on the cream background */
+  --focus-ring: #3B2A6B;
+  --nav-width: 17rem;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: var(--base-font-size);
+  font-family: 'Inter', sans-serif;
+  background-color: var(--c-bg-light);
+  color: var(--c-text-main);
+}
+
+body {
+  overflow-wrap: break-word;
+  background: radial-gradient(circle at 50% 0%, var(--c-bg-light) 0%, var(--c-bg-gradient) 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   1. TOP HEADER BANNER
+   ========================================================================== */
+.glass-banner {
+  position: fixed;
+  top: 16px;
+  /* Centre the banner in the free space between the left nav (17rem) and the
+     font-size toolbar (7rem reserved). Both scale with the font size, so the
+     banner never collides with them however large the text gets. */
+  left: calc(50% + (var(--nav-width) - 7rem) / 2);
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: max-content;
+  max-width: calc(100vw - var(--nav-width) - 7rem - 16px);
+  box-sizing: border-box;
+  padding: 0.6rem 1.4rem;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--c-lavender);
+  border-radius: 1.75rem; /* pill look for 1 line, still tidy when text wraps to 2-3 lines */
+  box-shadow: var(--glass-shadow);
+  transition: opacity 0.35s ease, transform 0.35s ease, left 0.35s ease;
+}
+
+.glass-banner.banner-hidden {
+  opacity: 0;
+  transform: translate(-50%, -28px);
+  pointer-events: none;
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 0.75rem;
+  font-size: 1rem;
+  color: var(--c-text-main);
+}
+
+.team-badge {
+  background: var(--c-pink-rose);
+  color: #4A2E35;
+  border: 1px solid #E2AAB8;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1rem;
+  white-space: nowrap;   /* badge stays on ONE line */
+  flex-shrink: 0;        /* ...and is never squeezed by the team names */
+}
+
+.team-info {
+  white-space: normal;   /* only the long member list is allowed to wrap */
+  min-width: 0;
+  overflow-wrap: anywhere;
+  line-height: 1.4;
+  color: var(--c-text-muted);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   2. DESKTOP STICKY NAVIGATION (> 1024px)
+   ========================================================================== */
+.left-sticky-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  width: var(--nav-width);
+  padding: 36px 20px 28px 28px;
+  user-select: none;
+  transition: left 0.35s ease, opacity 0.35s ease;
+}
+
+.nav-track-wrapper { position: relative; display: flex; flex-direction: column; }
+.nav-track-line { position: absolute; top: 10px; bottom: 10px; left: 9px; width: 2px; background: rgba(195, 177, 224, 0.45); }
+
+/* Gliding Indicator Dot */
+.nav-glider-dot { 
+  position: absolute; 
+  left: 6px; 
+  top: 0; 
+  width: 8px; 
+  height: 8px; 
+  border-radius: 50%; 
+  background-color: #7B5DAA; 
+  box-shadow: 0 0 10px rgba(123, 93, 170, 0.6); 
+  z-index: 3; 
+  pointer-events: none; 
+  will-change: transform;
+}
+
+.nav-list { list-style: none; display: flex; flex-direction: column; gap: 24px; }
+.nav-item { position: relative; }
+/* Real <a href> so the nav works with keyboard + screen readers (2.1.1).
+   Keep this NOT positioned so .nav-dot-container.offsetTop stays relative to the <li> (used by main.js). */
+.nav-link { display: flex; align-items: center; gap: 14px; cursor: pointer; text-decoration: none; color: inherit; border-radius: 8px; }
+
+.nav-dot-container { position: relative; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; }
+.nav-dot { width: 6px; height: 6px; border-radius: 50%; background-color: #8A78B0; transition: all 0.3s ease; z-index: 2; }
+
+.nav-active-ring { 
+  position: absolute; width: 18px; height: 18px; border-radius: 50%; 
+  border: 2px solid #7B5DAA; transform: scale(0); opacity: 0; 
+  transition: transform 0.4s ease, opacity 0.3s ease; 
+}
+
+.nav-item.active .nav-dot { background-color: #7B5DAA; transform: scale(1.25); }
+.nav-item.active .nav-active-ring { transform: scale(1); opacity: 1; }
+.nav-label { white-space: normal; font-size: 1rem; font-weight: 600; color: var(--c-text-muted); transition: color 0.3s ease, transform 0.3s ease; }
+.nav-item:hover .nav-label, .nav-item.active .nav-label { color: var(--c-text-main); transform: translateX(3px); }
+
+/* MOBILE HAMBURGER TOGGLE BUTTON & BARS */
+.mobile-nav-toggle { display: none; }
+
+.hamburger-bar { 
+  width: 20px; 
+  height: 2.5px; 
+  background-color: #2A2730; 
+  border-radius: 2px; 
+  transition: all 0.3s ease; 
+}
+
+/* ==========================================================================
+   3. HERO SECTION
+   ========================================================================== */
+.scrolly-section {
+  min-height: 100vh;
+  padding: 100px 4vw 80px calc(var(--nav-width) + 24px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Increased padding-top to ensure clear spacing below top banner when wrapped */
+.hero-section {
+  align-items: center;
+  text-align: center;
+  padding-top: calc(1rem + 9rem); /* rem so the gap grows with A+ and never hides under the banner */
+}
+
+.hero-text-container {
+  max-width: 1080px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.eyebrow-tag {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #5B4182;
+  background: var(--c-pink-rose);
+  padding: 4px 14px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+  border: 1px solid var(--c-coral);
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--c-text-main);
+  line-height: 1.08;
+  margin-bottom: 10px;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.15rem, 2.2vw, 1.75rem);
+  font-weight: 500;
+  color: var(--c-text-muted);
+  margin-bottom: 18px;
+}
+
+.hero-story {
+  font-size: 1.08rem;
+  color: var(--c-text-main);
+  opacity: 0.92;
+  max-width: 960px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+/* Increased Frame Height from 400px to 480px */
+.hero-media-frame {
+  width: min(1080px, 100%);
+  height: 480px; 
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform-origin: center bottom;
+  will-change: transform, opacity, filter;
+  margin-top: 24px;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.window-controls {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px; background: rgba(243, 233, 180, 0.6);
+  border-bottom: 1px solid var(--glass-border);
+}
+.win-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c-coral); opacity: 0.9; }
+.window-title { margin: 0 auto; font-size: 1rem; color: var(--c-text-muted); font-weight: 600; }
+.slide-toggle {
+  background: #fff; color: var(--c-text-main);
+  border: 1.5px solid #7B5DAA; border-radius: 999px;
+  padding: 2px 12px; font: inherit; font-size: 1rem; font-weight: 600; cursor: pointer;
+}
+.slide-toggle:hover { background: var(--c-yellow-cream); }
+.slideshow-container { position: relative; flex: 1; width: 100%; overflow: hidden; }
+.slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transform: scale(1.04); transition: opacity 1.4s ease, transform 4s ease; display: flex; align-items: flex-end; padding: 20px; }
+.slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(42, 39, 48, 0.7), transparent); }
+.slide.active { opacity: 1; transform: scale(1); }
+.slide-caption { position: relative; z-index: 2; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(12px); border: 1px solid var(--c-mint); padding: 6px 16px; border-radius: 999px; font-size: 1rem; color: var(--c-text-main); font-weight: 600; }
+
+/* ==========================================================================
+   4. GLASS CARDS & SECTIONS
+   ========================================================================== */
+.section-container { max-width: 1080px; width: 100%; margin: 0 auto; }
+.section-header { margin-bottom: 40px; }
+.section-number { display: inline-block; font-size: 1rem; font-weight: 700; letter-spacing: 0.14em; color: #5B4182; background: rgba(195, 177, 224, 0.35); padding: 3px 10px; border-radius: 6px; margin-bottom: 8px; }
+.section-title { font-size: clamp(1.8rem, 3.2vw, 2.5rem); font-weight: 800; color: var(--c-text-main); margin-bottom: 12px; }
+.section-lead { font-size: 1.05rem; color: var(--c-text-muted); max-width: 880px; font-weight: 500; }
+
+.glass-card {
+  background: var(--glass-surface);
+  backdrop-filter: blur(20px) saturate(150%);
+  border: 1.5px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: var(--glass-shadow);
+  transition: background 0.35s ease, border-color 0.35s ease, transform 0.35s ease, border-left-color 0.35s ease;
+  padding: 26px 22px;
+  min-width: 0;
+}
+
+/* Only cards that are really interactive (e.g. future chart cards) get hover feedback. */
+.glass-card.is-interactive:hover {
+  background: var(--glass-surface-hover);
+  border-color: #7B5DAA;
+  transform: translateY(-2px);
+}
+
+.grid-4-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+.grid-2x2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+
+.metric-card { text-align: center; }
+.metric-value { font-size: 2.8rem; font-weight: 800; color: var(--c-text-main); margin-bottom: 6px; line-height: 1; }
+.metric-label { font-size: 1rem; color: var(--c-text-muted); font-weight: 600; }
+
+/* CARD 1: "The 2020 Pandemic Dip" (.highlight-card) */
+.highlight-card { 
+  border-color: var(--glass-border); 
+  background: var(--glass-surface); 
+}
+
+/* NARRATIVE GROWTH CARDS */
+.narrative-card h3 { font-size: 1.25rem; color: var(--c-text-main); margin-bottom: 10px; font-weight: 700; }
+.metric-large { font-size: 2.3rem; font-weight: 800; color: var(--c-text-main); margin-bottom: 10px; }
+
+/* Non-Indigenous Growth Card (+14.9%) */
+.border-accent { 
+  border-left: 5px solid #E07A7A; 
+}
+
+/* First Nations Growth Card (+90.2%) */
+.border-accent-secondary { 
+  border-left: 5px solid #E07A7A; 
+}
+
+.accent-text { color: #5B4182 !important; font-weight: 700; }
+
+/* ==========================================================================
+   02. DATA GOVERNANCE & PIPELINE
+   ========================================================================== */
+.pipeline-flow { display: flex; align-items: stretch; gap: 10px; flex-wrap: wrap; }
+.pipeline-node { flex: 1 1 160px; padding: 20px 16px; background: rgba(255, 255, 255, 0.85); }
+.node-step { font-size: 1rem; font-weight: 800; letter-spacing: 0.1em; color: #5B4182; }
+.pipeline-node h4 { font-size: 1rem; margin: 6px 0; color: var(--c-text-main); font-weight: 700; }
+.pipeline-node p { font-size: 1rem; color: var(--c-text-muted); }
+
+.pipeline-connector { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-size: 2.4rem; 
+  color: #7B5DAA; 
+  font-weight: 800; 
+  padding: 0 4px;
+}
+
+.caveat-badge { font-size: 1rem; font-weight: 800; color: #9E3D3D; letter-spacing: 0.1em; }
+.caveat-card h3 { font-size: 1.15rem; color: var(--c-text-main); margin-top: 4px; margin-bottom: 6px;}
+.caveat-card p { font-size: 1rem; color: var(--c-text-muted); }
+
+.site-footer { text-align: center; padding: 40px 20px 40px calc(var(--nav-width) + 24px); font-size: 1rem; color: var(--c-text-muted); border-top: 1px solid var(--glass-border); font-weight: 500; }
+
+/* ==========================================================================
+   5. RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+@media screen and (max-width: 1200px) {
+  .hero-section { padding-top: calc(1rem + 10rem); } /* banner may wrap to 2-3 lines here */
+}
+
+@media screen and (max-width: 1024px) {
+  .scrolly-section, .site-footer { padding-left: 20px; padding-right: 20px; }
+
+  .mobile-nav-toggle {
+    display: flex;
+    position: fixed; top: 16px; left: 16px; width: 44px; height: 44px;
+    padding: 10px; z-index: 2100; cursor: pointer;
+    flex-direction: column; justify-content: space-around; align-items: center;
+    background: rgba(255, 255, 255, 0.92); border-radius: 12px; border: 1.5px solid var(--c-lavender);
+    box-shadow: 0 8px 20px rgba(42, 39, 48, 0.08);
+  }
+
+  .left-sticky-nav {
+    position: fixed; top: 0; left: -280px; width: 260px; height: 100vh;
+    background: rgba(250, 248, 245, 0.98); backdrop-filter: blur(20px);
+    z-index: 2000; padding: 80px 20px 20px 24px;
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.12);
+    overflow-y: auto;
+    /* visibility:hidden removes the closed drawer from the tab order (4.1.2 / 2.4.3) */
+    visibility: hidden;
+    transition: left 0.35s ease, visibility 0s linear 0.35s;
+  }
+  .left-sticky-nav.is-open { left: 0; visibility: visible; transition: left 0.35s ease, visibility 0s; }
+
+  .glass-banner {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: calc(100vw - 170px);
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+  }
+  .glass-banner.banner-hidden { transform: translate(-50%, -28px); }
+
+  .grid-4-col, .grid-2x2 { grid-template-columns: 1fr; }
+  .pipeline-flow { flex-direction: column; }
+  .pipeline-connector .arrow-icon { transform: rotate(90deg); }
+  .hero-media-frame { height: 400px; }
+}
+
+@media screen and (max-width: 768px) {
+  .team-badge { border-radius: 14px; white-space: normal; } /* multi-line badge looked like an ellipse at 320px */
+  .team-info { display: none; }
+  .glass-banner { max-width: fit-content; }
+  .hero-section { padding-top: calc(1rem + 8rem); }
+}
+
+/* ==========================================================================
+   6. ACCESSIBILITY ADDITIONS (WCAG 2.1 A / AA)
+   ========================================================================== */
+
+/* 2.4.1 Bypass Blocks - skip link, visible only on keyboard focus */
+.skip-link {
+  position: fixed; top: -100px; left: 16px; z-index: 3000;
+  background: #fff; color: var(--c-text-main);
+  border: 2px solid var(--focus-ring); border-radius: 10px;
+  padding: 10px 16px; font-weight: 700; text-decoration: none;
+}
+.skip-link:focus { top: 16px; }
+
+/* 2.4.7 Focus Visible - one consistent, high-contrast ring for every control */
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+/* Headings/main receive programmatic focus after a nav jump; they are not controls, so no ring */
+main:focus, h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus { outline: none; }
+
+/* 2.3.3 / user setting: respect "reduce motion" */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .slide, .slide.active { transform: none; }
+}
