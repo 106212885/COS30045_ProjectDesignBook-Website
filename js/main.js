@@ -1,5 +1,4 @@
 /* ==========================================================================
-   js/main.js
    Page behaviour: smooth scroll, banner fade, slideshow (with pause), hero
    scroll effect, and the section navigation (keyboard accessible).
    Depends on constants.js. GSAP / ScrollTrigger / Lenis come from CDNs and are

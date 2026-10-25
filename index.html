@@ -11,24 +11,17 @@
 
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/accessibility.css" />
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 </head>
 <body>
 
-  <!-- 2.4.1 Bypass Blocks: first focusable element on the page -->
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <!-- MOBILE NAVIGATION TOGGLE -->
-  <button id="mobile-nav-toggle" class="mobile-nav-toggle glass-pill" aria-label="Toggle Navigation Menu" aria-controls="left-sticky-nav" aria-expanded="false">
+  <button id="mobile-nav-toggle" class="mobile-nav-toggle glass-pill" aria-label="Toggle Navigation Menu">
     <span class="hamburger-bar" aria-hidden="true"></span>
     <span class="hamburger-bar" aria-hidden="true"></span>
     <span class="hamburger-bar" aria-hidden="true"></span>
   </button>
 
-  <!-- TOP HEADER GLASS BANNER -->
   <header id="top-team-banner" class="glass-banner">
     <div class="banner-content">
       <span class="team-badge">COS30045 Data Visualisation</span>
@@ -36,223 +29,160 @@
     </div>
   </header>
 
-  <!-- ACCESSIBILITY TOOLBAR (FONT SIZE ONLY) -->
   <div class="a11y-toolbar glass-pill" role="region" aria-label="Font Size Controls">
-    <button id="btn-text-decrease" class="a11y-btn" title="Decrease Font Size" aria-label="Decrease Font Size">A-</button>
-    <button id="btn-text-increase" class="a11y-btn" title="Increase Font Size" aria-label="Increase Font Size">A+</button>
+    <button id="btn-text-decrease" class="a11y-btn" title="Decrease Font Size">A-</button>
+    <button id="btn-text-increase" class="a11y-btn" title="Increase Font Size">A+</button>
   </div>
-
-  <!-- TOAST NOTIFICATION -->
   <div id="a11y-toast" class="toast-notification" role="status" aria-live="polite"></div>
 
-  <!-- LEFT STICKY NAVIGATION -->
   <nav id="left-sticky-nav" class="left-sticky-nav" aria-label="Section Navigation">
     <div class="nav-track-wrapper">
       <div class="nav-track-line" aria-hidden="true"></div>
       <div id="nav-glider-dot" class="nav-glider-dot" aria-hidden="true"></div>
 
       <ul class="nav-list">
-        <li class="nav-item active" data-target="#hero">
-          <a class="nav-link" href="#hero"><div class="nav-dot-container" aria-hidden="true"><span class="nav-dot"></span><span class="nav-active-ring"></span></div>
-          <span class="nav-label">Introduction</span></a>
-        </li>
-        <li class="nav-item" data-target="#sec-overview">
-          <a class="nav-link" href="#sec-overview"><div class="nav-dot-container" aria-hidden="true"><span class="nav-dot"></span><span class="nav-active-ring"></span></div>
-          <span class="nav-label">01. Overview</span></a>
-        </li>
-        <li class="nav-item" data-target="#sec-pipeline">
-          <a class="nav-link" href="#sec-pipeline"><div class="nav-dot-container" aria-hidden="true"><span class="nav-dot"></span><span class="nav-active-ring"></span></div>
-          <span class="nav-label">02. KNIME Pipeline</span></a>
-        </li>
-        <li class="nav-item" data-target="#sec-national">
-          <a class="nav-link" href="#sec-national"><div class="nav-dot-container" aria-hidden="true"><span class="nav-dot"></span><span class="nav-active-ring"></span></div>
-          <span class="nav-label">03. National Trends</span></a>
-        </li>
-        <li class="nav-item" data-target="#sec-users">
-          <a class="nav-link" href="#sec-users"><div class="nav-dot-container" aria-hidden="true"><span class="nav-dot"></span><span class="nav-active-ring"></span></div>
-          <span class="nav-label">04. Road Users</span></a>
-        </li>
-        <li class="nav-item" data-target="#sec-equity">
-          <a class="nav-link" href="#sec-equity"><div class="nav-dot-container" aria-hidden="true"><span class="nav-dot"></span><span class="nav-active-ring"></span></div>
-          <span class="nav-label">05. Regional & Equity</span></a>
-        </li>
-        <li class="nav-item" data-target="#sec-quality">
-          <a class="nav-link" href="#sec-quality"><div class="nav-dot-container" aria-hidden="true"><span class="nav-dot"></span><span class="nav-active-ring"></span></div>
-          <span class="nav-label">06. Data Caveats</span></a>
-        </li>
+        <li class="nav-item active"><a class="nav-link" href="#hero"><div class="nav-dot-container" aria-hidden="true"><span class="nav-dot"></span></div><span class="nav-label">Introduction</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#sec-overview"><div class="nav-dot-container" aria-hidden="true"><span class="nav-dot"></span></div><span class="nav-label">01. Overview</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#sec-national"><div class="nav-dot-container" aria-hidden="true"><span class="nav-dot"></span></div><span class="nav-label">02. National Trends</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#sec-users"><div class="nav-dot-container" aria-hidden="true"><span class="nav-dot"></span></div><span class="nav-label">03. Injury Severity</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#sec-equity"><div class="nav-dot-container" aria-hidden="true"><span class="nav-dot"></span></div><span class="nav-label">04. State Comparisons</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#sec-quality"><div class="nav-dot-container" aria-hidden="true"><span class="nav-dot"></span></div><span class="nav-label">05. Data Caveats</span></a></li>
       </ul>
     </div>
   </nav>
 
   <main id="main-content" class="main-content" tabindex="-1">
 
-    <!-- HERO SECTION -->
     <section id="hero" class="scrolly-section hero-section">
       <div class="hero-text-container">
         <p class="eyebrow-tag">AUSTRALIAN ROAD SAFETY REPORT • 2011–2021</p>
         <h1 class="hero-title">Beyond the Fatality Count</h1>
-        <h2 class="hero-subtitle">Who Is Hospitalised on Australia's Roads, 2011–2021</h2>
+        <h2 class="hero-subtitle">Shifting the Focus from Deaths to Morbidity</h2>
         <p class="hero-story">
-          Road crashes are a leading cause of injury-related hospitalisation in Australia. While fatalities capture public attention, non-fatal injuries represent a continuing burden on individuals, families, and healthcare systems—accounting for <strong>39,505 hospitalisations</strong> in 2021 alone.
+          Road-safety debate usually centres on deaths, but most people injured in a crash survive. Those people are easy to overlook. In 2021 alone, Australian data recorded <strong>39,505 hospitalisations</strong> from road crashes. This project visualises non-fatal injuries, measures their severity, and compares states fairly to help policymakers decide where prevention efforts are needed most.
         </p>
       </div>
 
-      <!-- Featured Media Frame -->
       <div id="hero-media-frame" class="hero-media-frame glass-card">
         <div class="window-controls">
           <span class="win-dot" aria-hidden="true"></span><span class="win-dot" aria-hidden="true"></span><span class="win-dot" aria-hidden="true"></span>
           <span class="window-title">AIHW & BITRE Trauma Surveillance</span>
-          <!-- 2.2.2 Pause, Stop, Hide: text is set by main.js (Pause slideshow / Play slideshow) -->
           <button type="button" id="slide-toggle" class="slide-toggle">Pause slideshow</button>
         </div>
-        <div id="slideshow-container" class="slideshow-container" role="group" aria-roledescription="carousel" aria-label="Featured road safety images" aria-live="off">
-          <div class="slide active" role="group" aria-roledescription="slide" aria-label="1 of 3" aria-hidden="false" style="background-image: url('https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=1400&q=80');">
+        <div id="slideshow-container" class="slideshow-container">
+          <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=1400&q=80');">
             <div class="slide-caption">Urban Mobility & Traffic Infrastructure</div>
           </div>
-          <div class="slide" role="group" aria-roledescription="slide" aria-label="2 of 3" aria-hidden="true" style="background-image: url('https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1400&q=80');">
+          <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1400&q=80');">
             <div class="slide-caption">Vulnerable Road Users: Pedal Cyclist Surge</div>
           </div>
-          <div class="slide" role="group" aria-roledescription="slide" aria-label="3 of 3" aria-hidden="true" style="background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1400&q=80');">
-            <div class="slide-caption">Regional & Remote Highway Networks</div>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 1: OVERVIEW -->
     <section id="sec-overview" class="scrolly-section">
       <div class="section-container">
-        <div class="section-header reveal-up">
+        <div class="section-header">
           <span class="section-number">01 / PURPOSE & AUDIENCE</span>
-          <h2 class="section-title">Shifting Focus From Fatalities to Morbidity</h2>
+          <h2 class="section-title">Answering Three Key Questions</h2>
           <p class="section-lead">
-            Designed for policymakers and public-health analysts, this project uncovers the hidden patterns of inpatient road trauma across a decade of hospital admissions.
+            Designed for policymakers, public-health analysts, and the general public, this visualisation explores a decade of inpatient road trauma to answer three critical questions.
           </p>
         </div>
-        <div class="grid-4-col reveal-up">
-          <div class="glass-card task-card"><div class="card-icon">01</div><h3>Track Trends</h3><p>Monitor national hospitalisation trajectories and the 2020 pandemic dip.</p></div>
-          <div class="glass-card task-card"><div class="card-icon">02</div><h3>Compare Users</h3><p>Contrast divergent injury volumes across drivers, cyclists, and pedestrians.</p></div>
-          <div class="glass-card task-card"><div class="card-icon">03</div><h3>Analyze Disparities</h3><p>Examine disproportionate trauma growth among First Nations and remote areas.</p></div>
-          <div class="glass-card task-card"><div class="card-icon">04</div><h3>Evaluate Severity</h3><p>Measure healthcare system strain by comparing hospital bed days.</p></div>
+        <div class="grid-4-col">
+          <div class="glass-card task-card"><div class="card-icon">01</div><h3>10-Year Trends</h3><p>How have hospitalisations changed, and which road user groups are rising or falling?</p></div>
+          <div class="glass-card task-card"><div class="card-icon">02</div><h3>Injury Severity</h3><p>Which road user groups suffer the most serious injuries based on hospital bed days?</p></div>
+          <div class="glass-card task-card"><div class="card-icon">03</div><h3>State Comparisons</h3><p>How do states and territories compare once population size is taken into account?</p></div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: KNIME PIPELINE -->
-    <section id="sec-pipeline" class="scrolly-section">
-      <div class="section-container">
-        <div class="section-header reveal-up">
-          <span class="section-number">02 / DATA GOVERNANCE & PIPELINE</span>
-          <h2 class="section-title">From 117,919 Raw Records to Actionable Insights</h2>
-        </div>
-        <div class="pipeline-flow reveal-up" role="list" aria-label="Data processing steps">
-          <div class="glass-card pipeline-node" role="listitem"><span class="node-step">STEP 01</span><h3>Excel Reader</h3><p>Ingests raw BITRE worksheets.</p></div>
-          <div class="pipeline-connector" aria-hidden="true"><span class="arrow-icon">→</span></div>
-          <div class="glass-card pipeline-node" role="listitem"><span class="node-step">STEP 02</span><h3>Row Filter</h3><p>Isolates Cause = 'Traffic' (86,140 rows).</p></div>
-          <div class="pipeline-connector" aria-hidden="true"><span class="arrow-icon">→</span></div>
-          <div class="glass-card pipeline-node" role="listitem"><span class="node-step">STEP 03</span><h3>Missing Values</h3><p>Imputes missing Died_cases with 0.</p></div>
-          <div class="pipeline-connector" aria-hidden="true"><span class="arrow-icon">→</span></div>
-          <div class="glass-card pipeline-node" role="listitem"><span class="node-step">STEP 04</span><h3>Rule Engine</h3><p>Flags incomplete 2021 mortality data.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 3: NATIONAL TRENDS -->
     <section id="sec-national" class="scrolly-section">
       <div class="section-container">
-        <div class="section-header reveal-up">
-          <span class="section-number">03 / QUESTION 1: OVERALL TREND</span>
-          <h2 class="section-title">A Decade of Growth & The 2020 Mobility Shock</h2>
+        <div class="section-header">
+          <span class="section-number">02 / QUESTION 1: OVERALL TREND</span>
+          <h2 class="section-title">The National Trend is Not the Same for Everyone</h2>
           <p class="section-lead">
-            National road crash hospitalisations climbed by <strong>+16.08%</strong> over the decade, punctuated by a sharp dip during COVID-19 lockdowns.
+            Between 2011 and 2021, hospitalisations rose from 34,033 to 39,505. However, this national total hides divergent trends: <strong>pedal cyclists rose by ~51%</strong> while <strong>pedestrians fell by ~15%</strong>.
           </p>
         </div>
-        <div class="grid-2x2 reveal-up">
+        
+        <div class="grid-4-col" style="margin-bottom: 24px;">
           <div class="glass-card metric-card">
-            <p class="metric-value">34,033</p>
-            <p class="metric-label">Hospitalisations in 2011</p>
+            <p class="metric-value" id="kpi-total">0</p>
+            <p class="metric-label">Total Hospitalisations (2011-2021)</p>
           </div>
           <div class="glass-card metric-card">
-            <p class="metric-value">39,505</p>
-            <p class="metric-label">Hospitalisations in 2021</p>
+            <p class="metric-value" id="kpi-highest-val" style="color: #D55E00;">0</p>
+            <p class="metric-label">Highest Volume: <strong id="kpi-highest-name">-</strong></p>
           </div>
           <div class="glass-card metric-card highlight-card">
-            <p class="metric-value">37,966</p>
-            <p class="metric-label">The 2020 Pandemic Dip</p>
+            <p class="metric-value" id="kpi-lowest-val" style="color: #009E73;">0</p>
+            <p class="metric-label">Lowest Volume: <strong id="kpi-lowest-name">-</strong></p>
           </div>
-          <div class="glass-card metric-card">
-            <p class="metric-value">+16.1%</p>
-            <p class="metric-label">Overall Decade Growth</p>
-          </div>
+        </div>
+
+        <div class="glass-card">
+          <!-- Subtle Interaction Prompt -->
+          <p style="text-align: center; font-size: 0.9rem; font-style: italic; color: var(--c-text-muted); margin-bottom: 16px;">
+            <span aria-hidden="true">👆</span> Hover or tap the chart to view exact yearly counts.
+          </p>
+
+          <div id="filter-container"></div>
+          <div id="chart-container" style="width: 100%; max-width: 1000px; margin: 0 auto; position: relative;"></div>
+          
+          <!-- Data Break Caveat Note -->
+          <p style="font-size: 0.85rem; color: var(--c-text-muted); text-align: center; margin-top: 15px;">
+            *Note: Breaks in series occurred in 2012 (VIC) and 2017 (NSW) due to changes in emergency department counting rules.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4: ROAD USERS -->
     <section id="sec-users" class="scrolly-section">
       <div class="section-container">
-        <div class="section-header reveal-up">
-          <span class="section-number">04 / QUESTION 2: ROAD USERS</span>
-          <h2 class="section-title">Volume vs. Vulnerability Across Road Users</h2>
+        <div class="section-header">
+          <span class="section-number">03 / QUESTION 2: SEVERITY</span>
+          <h2 class="section-title">Volume vs. Severity: A Critical Difference</h2>
           <p class="section-lead">
-            Pedal cyclists experienced the fastest surge, whereas pedestrians endure the highest trauma severity per crash.
+            How many people are hurt and how badly they are hurt are different things. Pedestrians are a small share of total cases, but they stay an average of 9.1 days in hospital compared to 2.9 days for pedal cyclists.
           </p>
         </div>
-        <div class="grid-2x2 reveal-up">
-          <div class="glass-card narrative-card">
-            <h3><span aria-hidden="true">🚴</span> Cyclist Surge</h3>
-            <p class="metric-large">+51.4%</p>
-            <p>Growth from 5,391 to 8,163 cases. Fast rising, but lower severity (~3 bed days/case).</p>
-          </div>
-          <div class="glass-card narrative-card">
-            <h3><span aria-hidden="true">🚶</span> Pedestrian Severity</h3>
-            <p class="metric-large">9.01 Days</p>
-            <p>Average hospital stay. Cases fell by 15%, but acute healthcare strain remains the highest.</p>
-          </div>
+        <div class="glass-card">
+          <p style="text-align:center; color: #5E5A66; padding: 40px;">[Chart 2 will go here]</p>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 5: REGIONAL & EQUITY -->
     <section id="sec-equity" class="scrolly-section">
       <div class="section-container">
-        <div class="section-header reveal-up">
-          <span class="section-number">05 / QUESTION 3: DISPROPORTIONATE IMPACT</span>
-          <h2 class="section-title">First Nations & Remote Area Trajectories</h2>
+        <div class="section-header">
+          <span class="section-number">04 / QUESTION 3: STATE COMPARISONS</span>
+          <h2 class="section-title">Fair Comparisons per 100,000 People</h2>
           <p class="section-lead">
-            First Nations road hospitalisations grew at six times the relative rate of non-Indigenous Australians, exposing severe geographic and demographic disparities.
+            A big state will almost always report more cases than a small one. Adjusting for population gives a fairer basis for deciding where to focus prevention funding.
           </p>
         </div>
-        <div class="grid-2x2 reveal-up">
-          <div class="glass-card narrative-card border-accent">
-            <h3 class="accent-text">First Nations Growth</h3>
-            <p class="metric-large">+90.2%</p>
-            <p>Hospitalisations surged from 1,167 to 2,220, vastly outpacing baseline population growth.</p>
-          </div>
-          <div class="glass-card narrative-card border-accent-secondary">
-            <h3>Non-Indigenous Growth</h3>
-            <p class="metric-large">+14.9%</p>
-            <p>Climbed from 31,997 to 36,755, mirroring general population expansion.</p>
-          </div>
+        <div class="glass-card">
+          <p style="text-align:center; color: #5E5A66; padding: 40px;">[Chart 3 will go here]</p>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 6: DATA CAVEATS -->
     <section id="sec-quality" class="scrolly-section">
       <div class="section-container">
-        <div class="section-header reveal-up">
-          <span class="section-number">06 / CRITICAL LIMITATIONS</span>
-          <h2 class="section-title">Data Quality & Caveats</h2>
+        <div class="section-header">
+          <span class="section-number">05 / METHODOLOGY</span>
+          <h2 class="section-title">Data Quality & Limitations</h2>
         </div>
-        <div class="grid-2x2 reveal-up">
+        <div class="grid-2x2">
           <div class="glass-card caveat-card">
             <div class="caveat-header"><span class="caveat-badge">01</span><h3>Inclusion Breaks</h3></div>
-            <p>Victoria (2012) and NSW (2017) excluded ED-only care, creating artificial downward trend steps.</p>
+            <p>Victoria stopped counting emergency-department-only cases in July 2012, and NSW did the same in June 2017. Counts before and after these dates are not fully comparable.</p>
           </div>
           <div class="glass-card caveat-card">
-            <div class="caveat-header"><span class="caveat-badge">02</span><h3>2021 Mortality Field</h3></div>
-            <p>All 2021 died-in-care rows report 0. Analysis is strictly constrained to 2011–2020.</p>
+            <div class="caveat-header"><span class="caveat-badge">02</span><h3>Incomplete Mortality Data</h3></div>
+            <p>"Died cases" are recorded as 0 in every 2021 row, which appears to be missing data. Therefore, mortality analysis is strictly constrained to 2011–2020.</p>
           </div>
         </div>
       </div>
@@ -261,14 +191,17 @@
   </main>
 
   <footer class="site-footer">
-    <p>COS30045 Data Visualisation Project • Data Source: AIHW NHMD (METEOR 394352)</p>
+    <p>COS30045 Data Visualisation Project • Data Sources: BITRE & ABS Table 4</p>
   </footer>
 
-  <!-- Order matters: constants.js declares APP_CONFIG / APP_STATE used by the others. -->
   <script src="js/constants.js"></script>
   <script src="js/accessibility.js"></script>
   <script src="js/main.js"></script>
-  <!-- When the KNIME CSV is ready, add D3 here (pin a version), then your chart modules:
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script> -->
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  
+  <script src="js/national_trends_chart.js"></script>
+  <script src="js/interactive.js"></script>
+  <script src="js/loaded_data.js"></script>
 </body>
 </html>

@@ -1,30 +1,18 @@
 :root {
-  /* ==========================================================================
-     LIGHT MODE PASTEL PALETTE (WCAG Accessible & Colorblind Friendly)
-     ========================================================================== */
-  --c-bg-light:      #FAF8F5; /* Crisp Warm Cream Canvas */
-  --c-bg-gradient:   #F1ECE4; /* Subtle Bottom Gradient Shift */
-  --c-text-main:     #2A2730; /* High-Contrast Deep Charcoal Text */
-  --c-text-muted:    #5E5A66; /* Subtitles & Muted Secondary Text */
-
-  /* Pastel Accent Colors */
-  --c-pink-rose:     #F8D9E2; /* Eyebrows, Badges & Highlights */
-  --c-lavender:      #C3B1E0; /* Active Indicators & Section Numbers */
-  --c-mint:          #B2E0D9; /* Card Borders, Subtitles & Flow Arrows */
-  --c-yellow-cream:  #F3E9B4; /* Accent Fills & Highlighted Pill Cards */
-  --c-coral:         #FFB3B3; /* Warning Indicators & Accents */
-
-  /* Light Glassmorphism Surfaces */
+  --c-bg-light:      #FAF8F5; 
+  --c-bg-gradient:   #F1ECE4; 
+  --c-text-main:     #2A2730; 
+  --c-text-muted:    #5E5A66; 
+  --c-pink-rose:     #F8D9E2; 
+  --c-lavender:      #C3B1E0; 
+  --c-mint:          #B2E0D9; 
+  --c-yellow-cream:  #F3E9B4; 
+  --c-coral:         #FFB3B3; 
   --glass-surface: rgba(255, 255, 255, 0.72);
   --glass-surface-hover: rgba(255, 255, 255, 0.95);
   --glass-border: rgba(195, 177, 224, 0.45);
   --glass-shadow: 0 16px 32px rgba(42, 39, 48, 0.08);
-
-  /* 1.4.4 Resize text: percentage (not px) so the user's browser default size is respected.
-     accessibility.js changes this value when the A+ / A- buttons are used. */
   --base-font-size: 100%;
-
-  /* 2.4.7 Focus Visible: ~7:1 on the cream background */
   --focus-ring: #3B2A6B;
   --nav-width: 17rem;
 }
@@ -47,15 +35,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ==========================================================================
-   1. TOP HEADER BANNER
-   ========================================================================== */
+/* TOP HEADER BANNER */
 .glass-banner {
   position: fixed;
   top: 16px;
-  /* Centre the banner in the free space between the left nav (17rem) and the
-     font-size toolbar (7rem reserved). Both scale with the font size, so the
-     banner never collides with them however large the text gets. */
   left: calc(50% + (var(--nav-width) - 7rem) / 2);
   transform: translateX(-50%);
   z-index: 1000;
@@ -67,7 +50,7 @@ body {
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
   border: 1px solid var(--c-lavender);
-  border-radius: 1.75rem; /* pill look for 1 line, still tidy when text wraps to 2-3 lines */
+  border-radius: 1.75rem; 
   box-shadow: var(--glass-shadow);
   transition: opacity 0.35s ease, transform 0.35s ease, left 0.35s ease;
 }
@@ -96,12 +79,12 @@ body {
   border-radius: 999px;
   font-weight: 700;
   font-size: 1rem;
-  white-space: nowrap;   /* badge stays on ONE line */
-  flex-shrink: 0;        /* ...and is never squeezed by the team names */
+  white-space: nowrap;   
+  flex-shrink: 0;        
 }
 
 .team-info {
-  white-space: normal;   /* only the long member list is allowed to wrap */
+  white-space: normal;   
   min-width: 0;
   overflow-wrap: anywhere;
   line-height: 1.4;
@@ -109,9 +92,7 @@ body {
   font-weight: 500;
 }
 
-/* ==========================================================================
-   2. DESKTOP STICKY NAVIGATION (> 1024px)
-   ========================================================================== */
+/* DESKTOP STICKY NAVIGATION */
 .left-sticky-nav {
   position: fixed;
   top: 0;
@@ -126,7 +107,6 @@ body {
 .nav-track-wrapper { position: relative; display: flex; flex-direction: column; }
 .nav-track-line { position: absolute; top: 10px; bottom: 10px; left: 9px; width: 2px; background: rgba(195, 177, 224, 0.45); }
 
-/* Gliding Indicator Dot */
 .nav-glider-dot { 
   position: absolute; 
   left: 6px; 
@@ -143,8 +123,6 @@ body {
 
 .nav-list { list-style: none; display: flex; flex-direction: column; gap: 24px; }
 .nav-item { position: relative; }
-/* Real <a href> so the nav works with keyboard + screen readers (2.1.1).
-   Keep this NOT positioned so .nav-dot-container.offsetTop stays relative to the <li> (used by main.js). */
 .nav-link { display: flex; align-items: center; gap: 14px; cursor: pointer; text-decoration: none; color: inherit; border-radius: 8px; }
 
 .nav-dot-container { position: relative; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; }
@@ -161,33 +139,27 @@ body {
 .nav-label { white-space: normal; font-size: 1rem; font-weight: 600; color: var(--c-text-muted); transition: color 0.3s ease, transform 0.3s ease; }
 .nav-item:hover .nav-label, .nav-item.active .nav-label { color: var(--c-text-main); transform: translateX(3px); }
 
-/* MOBILE HAMBURGER TOGGLE BUTTON & BARS */
 .mobile-nav-toggle { display: none; }
-
-.hamburger-bar { 
-  width: 20px; 
-  height: 2.5px; 
-  background-color: #2A2730; 
-  border-radius: 2px; 
-  transition: all 0.3s ease; 
-}
+.hamburger-bar { width: 20px; height: 2.5px; background-color: #2A2730; border-radius: 2px; transition: all 0.3s ease; }
 
 /* ==========================================================================
-   3. HERO SECTION
+   LAYOUT & SPACING FIX
    ========================================================================== */
+
+/* Normal sections wrap naturally around their content (fixes the large gap) */
 .scrolly-section {
-  min-height: 100vh;
   padding: 100px 4vw 80px calc(var(--nav-width) + 24px);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
 }
 
-/* Increased padding-top to ensure clear spacing below top banner when wrapped */
+/* Only the Hero section is forced to fill the whole screen */
 .hero-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   text-align: center;
-  padding-top: calc(1rem + 9rem); /* rem so the gap grows with A+ and never hides under the banner */
+  padding-top: calc(1rem + 9rem); 
 }
 
 .hero-text-container {
@@ -234,7 +206,6 @@ body {
   line-height: 1.65;
 }
 
-/* Increased Frame Height from 400px to 480px */
 .hero-media-frame {
   width: min(1080px, 100%);
   height: 480px; 
@@ -268,9 +239,7 @@ body {
 .slide.active { opacity: 1; transform: scale(1); }
 .slide-caption { position: relative; z-index: 2; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(12px); border: 1px solid var(--c-mint); padding: 6px 16px; border-radius: 999px; font-size: 1rem; color: var(--c-text-main); font-weight: 600; }
 
-/* ==========================================================================
-   4. GLASS CARDS & SECTIONS
-   ========================================================================== */
+/* GLASS CARDS & SECTIONS */
 .section-container { max-width: 1080px; width: 100%; margin: 0 auto; }
 .section-header { margin-bottom: 40px; }
 .section-number { display: inline-block; font-size: 1rem; font-weight: 700; letter-spacing: 0.14em; color: #5B4182; background: rgba(195, 177, 224, 0.35); padding: 3px 10px; border-radius: 6px; margin-bottom: 8px; }
@@ -288,7 +257,6 @@ body {
   min-width: 0;
 }
 
-/* Only cards that are really interactive (e.g. future chart cards) get hover feedback. */
 .glass-card.is-interactive:hover {
   background: var(--glass-surface-hover);
   border-color: #7B5DAA;
@@ -302,46 +270,20 @@ body {
 .metric-value { font-size: 2.8rem; font-weight: 800; color: var(--c-text-main); margin-bottom: 6px; line-height: 1; }
 .metric-label { font-size: 1rem; color: var(--c-text-muted); font-weight: 600; }
 
-/* CARD 1: "The 2020 Pandemic Dip" (.highlight-card) */
-.highlight-card { 
-  border-color: var(--glass-border); 
-  background: var(--glass-surface); 
-}
-
-/* NARRATIVE GROWTH CARDS */
+.highlight-card { border-color: var(--glass-border); background: var(--glass-surface); }
 .narrative-card h3 { font-size: 1.25rem; color: var(--c-text-main); margin-bottom: 10px; font-weight: 700; }
 .metric-large { font-size: 2.3rem; font-weight: 800; color: var(--c-text-main); margin-bottom: 10px; }
 
-/* Non-Indigenous Growth Card (+14.9%) */
-.border-accent { 
-  border-left: 5px solid #E07A7A; 
-}
-
-/* First Nations Growth Card (+90.2%) */
-.border-accent-secondary { 
-  border-left: 5px solid #E07A7A; 
-}
-
+.border-accent { border-left: 5px solid #E07A7A; }
+.border-accent-secondary { border-left: 5px solid #E07A7A; }
 .accent-text { color: #5B4182 !important; font-weight: 700; }
 
-/* ==========================================================================
-   02. DATA GOVERNANCE & PIPELINE
-   ========================================================================== */
 .pipeline-flow { display: flex; align-items: stretch; gap: 10px; flex-wrap: wrap; }
 .pipeline-node { flex: 1 1 160px; padding: 20px 16px; background: rgba(255, 255, 255, 0.85); }
 .node-step { font-size: 1rem; font-weight: 800; letter-spacing: 0.1em; color: #5B4182; }
 .pipeline-node h4 { font-size: 1rem; margin: 6px 0; color: var(--c-text-main); font-weight: 700; }
 .pipeline-node p { font-size: 1rem; color: var(--c-text-muted); }
-
-.pipeline-connector { 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  font-size: 2.4rem; 
-  color: #7B5DAA; 
-  font-weight: 800; 
-  padding: 0 4px;
-}
+.pipeline-connector { display: flex; align-items: center; justify-content: center; font-size: 2.4rem; color: #7B5DAA; font-weight: 800; padding: 0 4px; }
 
 .caveat-badge { font-size: 1rem; font-weight: 800; color: #9E3D3D; letter-spacing: 0.1em; }
 .caveat-card h3 { font-size: 1.15rem; color: var(--c-text-main); margin-top: 4px; margin-bottom: 6px;}
@@ -349,64 +291,39 @@ body {
 
 .site-footer { text-align: center; padding: 40px 20px 40px calc(var(--nav-width) + 24px); font-size: 1rem; color: var(--c-text-muted); border-top: 1px solid var(--glass-border); font-weight: 500; }
 
-/* ==========================================================================
-   5. RESPONSIVE MEDIA QUERIES
-   ========================================================================== */
-@media screen and (max-width: 1200px) {
-  .hero-section { padding-top: calc(1rem + 10rem); } /* banner may wrap to 2-3 lines here */
-}
-
+/* RESPONSIVE MEDIA QUERIES */
+@media screen and (max-width: 1200px) { .hero-section { padding-top: calc(1rem + 10rem); } }
 @media screen and (max-width: 1024px) {
   .scrolly-section, .site-footer { padding-left: 20px; padding-right: 20px; }
-
   .mobile-nav-toggle {
-    display: flex;
-    position: fixed; top: 16px; left: 16px; width: 44px; height: 44px;
+    display: flex; position: fixed; top: 16px; left: 16px; width: 44px; height: 44px;
     padding: 10px; z-index: 2100; cursor: pointer;
     flex-direction: column; justify-content: space-around; align-items: center;
     background: rgba(255, 255, 255, 0.92); border-radius: 12px; border: 1.5px solid var(--c-lavender);
     box-shadow: 0 8px 20px rgba(42, 39, 48, 0.08);
   }
-
   .left-sticky-nav {
     position: fixed; top: 0; left: -280px; width: 260px; height: 100vh;
     background: rgba(250, 248, 245, 0.98); backdrop-filter: blur(20px);
-    z-index: 2000; padding: 80px 20px 20px 24px;
-    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.12);
-    overflow-y: auto;
-    /* visibility:hidden removes the closed drawer from the tab order (4.1.2 / 2.4.3) */
-    visibility: hidden;
-    transition: left 0.35s ease, visibility 0s linear 0.35s;
+    z-index: 2000; padding: 80px 20px 20px 24px; box-shadow: 10px 0 30px rgba(0, 0, 0, 0.12);
+    overflow-y: auto; visibility: hidden; transition: left 0.35s ease, visibility 0s linear 0.35s;
   }
   .left-sticky-nav.is-open { left: 0; visibility: visible; transition: left 0.35s ease, visibility 0s; }
-
-  .glass-banner {
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: calc(100vw - 170px);
-    padding: 0.5rem 1rem;
-    border-radius: 1rem;
-  }
+  .glass-banner { left: 50%; transform: translateX(-50%); max-width: calc(100vw - 170px); padding: 0.5rem 1rem; border-radius: 1rem; }
   .glass-banner.banner-hidden { transform: translate(-50%, -28px); }
-
   .grid-4-col, .grid-2x2 { grid-template-columns: 1fr; }
   .pipeline-flow { flex-direction: column; }
   .pipeline-connector .arrow-icon { transform: rotate(90deg); }
   .hero-media-frame { height: 400px; }
 }
-
 @media screen and (max-width: 768px) {
-  .team-badge { border-radius: 14px; white-space: normal; } /* multi-line badge looked like an ellipse at 320px */
+  .team-badge { border-radius: 14px; white-space: normal; } 
   .team-info { display: none; }
   .glass-banner { max-width: fit-content; }
   .hero-section { padding-top: calc(1rem + 8rem); }
 }
 
-/* ==========================================================================
-   6. ACCESSIBILITY ADDITIONS (WCAG 2.1 A / AA)
-   ========================================================================== */
-
-/* 2.4.1 Bypass Blocks - skip link, visible only on keyboard focus */
+/* ACCESSIBILITY ADDITIONS */
 .skip-link {
   position: fixed; top: -100px; left: 16px; z-index: 3000;
   background: #fff; color: var(--c-text-main);
@@ -415,22 +332,54 @@ body {
 }
 .skip-link:focus { top: 16px; }
 
-/* 2.4.7 Focus Visible - one consistent, high-contrast ring for every control */
-a:focus-visible, button:focus-visible, [tabindex]:focus-visible, summary:focus-visible {
-  outline: 3px solid var(--focus-ring);
-  outline-offset: 3px;
-  border-radius: 8px;
-}
-/* Headings/main receive programmatic focus after a nav jump; they are not controls, so no ring */
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible, summary:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; border-radius: 8px; }
 main:focus, h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus { outline: none; }
 
-/* 2.3.3 / user setting: respect "reduce motion" */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
   .slide, .slide.active { transform: none; }
+}
+
+/* ==========================================================================
+   INTERACTIVE CHART FILTERS & TOOLTIP
+   ========================================================================== */
+#filter-container {
+  display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 24px;
+}
+
+.filter-pill {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1.5px solid var(--glass-border);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1rem; 
+  cursor: pointer;
+  color: var(--c-text-muted);
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-pill.active {
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(42, 39, 48, 0.08);
+}
+
+.filter-pill:hover { transform: translateY(-2px); }
+
+.a11y-tooltip {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1.5px solid #7B5DAA;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 16px 32px rgba(42, 39, 48, 0.12);
+  font-family: 'Inter', sans-serif;
+  pointer-events: none; 
+  z-index: 9999;
+  color: #2A2730;
+  line-height: 1.5;
 }
