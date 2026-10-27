@@ -15,13 +15,14 @@
   --base-font-size: 100%;
   --focus-ring: #3B2A6B;
   --nav-width: 17rem;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
   font-size: var(--base-font-size);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   background-color: var(--c-bg-light);
   color: var(--c-text-main);
 }
@@ -143,29 +144,27 @@ body {
 .hamburger-bar { width: 20px; height: 2.5px; background-color: #2A2730; border-radius: 2px; transition: all 0.3s ease; }
 
 /* ==========================================================================
-   LAYOUT & SPACING FIX
+   LAYOUT & SPACING FIX (SMALLER GAP BELOW TOP BANNER)
    ========================================================================== */
 
-/* Normal sections wrap naturally around their content (fixes the large gap) */
 .scrolly-section {
   padding: 100px 4vw 80px calc(var(--nav-width) + 24px);
 }
 
-/* Only the Hero section is forced to fill the whole screen */
 .hero-section {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* Stops vertical centering from adding extra top gap */
   align-items: center;
   text-align: center;
-  padding-top: calc(1rem + 9rem); 
+  padding-top: 6.2rem;         /* Reduced from 10rem so "AUSTRALIAN ROAD SAFETY REPORT" sits closer to top banner */
 }
 
 .hero-text-container {
   max-width: 1080px;
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .eyebrow-tag {
@@ -177,7 +176,7 @@ body {
   background: var(--c-pink-rose);
   padding: 4px 14px;
   border-radius: 999px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   border: 1px solid var(--c-coral);
 }
 
@@ -194,7 +193,7 @@ body {
   font-size: clamp(1.15rem, 2.2vw, 1.75rem);
   font-weight: 500;
   color: var(--c-text-muted);
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .hero-story {
@@ -206,38 +205,138 @@ body {
   line-height: 1.65;
 }
 
+/* ==========================================================================
+   HERO SLIDESHOW FRAME & COMPACT CAPTION CONTAINER (SHRUNK BY ~20%)
+   ========================================================================== */
 .hero-media-frame {
-  width: min(1080px, 100%);
-  height: 480px; 
+  width: min(1240px, 100%);
+  height: clamp(520px, 64vh, 660px);
+  padding: 0 !important;
   border-radius: 20px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   transform-origin: center bottom;
   will-change: transform, opacity, filter;
-  margin-top: 24px;
-  border: 1px solid var(--glass-border);
+  margin-top: 18px;
+  border: 1.5px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
 }
 
 .window-controls {
-  display: flex; align-items: center; gap: 8px;
-  padding: 10px 16px; background: rgba(243, 233, 180, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(243, 233, 180, 0.75);
   border-bottom: 1px solid var(--glass-border);
+  flex-shrink: 0;
 }
 .win-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c-coral); opacity: 0.9; }
-.window-title { margin: 0 auto; font-size: 1rem; color: var(--c-text-muted); font-weight: 600; }
+.window-title { margin: 0 auto; font-size: 0.9rem; color: var(--c-text-muted); font-weight: 600; }
 .slide-toggle {
-  background: #fff; color: var(--c-text-main);
-  border: 1.5px solid #7B5DAA; border-radius: 999px;
-  padding: 2px 12px; font: inherit; font-size: 1rem; font-weight: 600; cursor: pointer;
+  background: #fff;
+  color: var(--c-text-main);
+  border: 1.5px solid #7B5DAA;
+  border-radius: 999px;
+  padding: 2px 10px;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
 }
 .slide-toggle:hover { background: var(--c-yellow-cream); }
-.slideshow-container { position: relative; flex: 1; width: 100%; overflow: hidden; }
-.slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transform: scale(1.04); transition: opacity 1.4s ease, transform 4s ease; display: flex; align-items: flex-end; padding: 20px; }
-.slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(42, 39, 48, 0.7), transparent); }
+
+.slideshow-container {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 1.4s ease, transform 4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 16px 20px;
+}
+
+/* Local images in ../images/ folder with built-in offline gradient fallbacks */
+.slide-theme-g1 {
+  background-image: url('../images/slide1-trends.jpg'),
+                    radial-gradient(circle at 80% 20%, rgba(178, 224, 217, 0.55) 0%, transparent 55%),
+                    linear-gradient(135deg, #2A2730 0%, #3B2A6B 52%, #0072B2 100%);
+}
+
+.slide-theme-g2 {
+  background-image: url('../images/slide2-severity.jpg'),
+                    radial-gradient(circle at 80% 20%, rgba(248, 217, 226, 0.45) 0%, transparent 55%),
+                    linear-gradient(135deg, #2A2730 0%, #5B4182 50%, #D55E00 100%);
+}
+
+.slide-theme-g3 {
+  background-image: url('../images/slide3-states.jpg'),
+                    radial-gradient(circle at 80% 20%, rgba(243, 233, 180, 0.45) 0%, transparent 55%),
+                    linear-gradient(135deg, #2A2730 0%, #3B4E52 50%, #009E73 100%);
+}
+
+/* Subtle bottom-only vignette so the photo stays bright */
+.slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(25, 22, 32, 0.55) 0%, rgba(25, 22, 32, 0.08) 35%, transparent 100%);
+}
+
 .slide.active { opacity: 1; transform: scale(1); }
-.slide-caption { position: relative; z-index: 2; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(12px); border: 1px solid var(--c-mint); padding: 6px 16px; border-radius: 999px; font-size: 1rem; color: var(--c-text-main); font-weight: 600; }
+
+/* Compact inner slide container (20% smaller width, padding, and text) */
+.slide-caption {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  padding: 8px 13px;
+  border-radius: 10px;
+  max-width: 400px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--c-text-main);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.slide-tag {
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  color: #5B4182;
+}
+
+.slide-caption strong {
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: var(--c-text-main);
+  line-height: 1.22;
+}
+
+.slide-sub {
+  font-size: 0.74rem;
+  color: var(--c-text-muted);
+  font-weight: 500;
+  line-height: 1.3;
+}
 
 /* GLASS CARDS & SECTIONS */
 .section-container { max-width: 1080px; width: 100%; margin: 0 auto; }
@@ -292,7 +391,7 @@ body {
 .site-footer { text-align: center; padding: 40px 20px 40px calc(var(--nav-width) + 24px); font-size: 1rem; color: var(--c-text-muted); border-top: 1px solid var(--glass-border); font-weight: 500; }
 
 /* RESPONSIVE MEDIA QUERIES */
-@media screen and (max-width: 1200px) { .hero-section { padding-top: calc(1rem + 10rem); } }
+@media screen and (max-width: 1200px) { .hero-section { padding-top: 6.8rem; } }
 @media screen and (max-width: 1024px) {
   .scrolly-section, .site-footer { padding-left: 20px; padding-right: 20px; }
   .mobile-nav-toggle {
@@ -314,13 +413,14 @@ body {
   .grid-4-col, .grid-2x2 { grid-template-columns: 1fr; }
   .pipeline-flow { flex-direction: column; }
   .pipeline-connector .arrow-icon { transform: rotate(90deg); }
-  .hero-media-frame { height: 400px; }
+  .hero-media-frame { height: 420px; }
 }
 @media screen and (max-width: 768px) {
   .team-badge { border-radius: 14px; white-space: normal; } 
   .team-info { display: none; }
   .glass-banner { max-width: fit-content; }
-  .hero-section { padding-top: calc(1rem + 8rem); }
+  .hero-section { padding-top: 5.5rem; }
+  .slide-caption { max-width: 90%; }
 }
 
 /* ACCESSIBILITY ADDITIONS */
@@ -341,26 +441,52 @@ main:focus, h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus { outline: none; }
 }
 
 /* ==========================================================================
-   INTERACTIVE CHART FILTERS & TOOLTIP
+   INTERACTIVE CHART FILTERS, GUIDE LABEL & TOOLTIP
    ========================================================================== */
 #filter-container {
-  display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 24px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.filter-guide-label {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 1.02rem;
+  color: #5B4182;
+  background: rgba(195, 177, 224, 0.28);
+  border: 1px solid var(--c-lavender);
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-right: 2px;
+  user-select: none;
 }
 
 .filter-pill {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.45);
   border: 1.5px solid var(--glass-border);
   padding: 8px 16px;
   border-radius: 999px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 1rem; 
+  font-size: 0.96rem; 
   cursor: pointer;
   color: var(--c-text-muted);
   transition: all 0.25s ease;
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.pill-color-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
 }
 
 .filter-pill.active {
@@ -377,7 +503,7 @@ main:focus, h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus { outline: none; }
   padding: 16px 20px;
   border-radius: 12px;
   box-shadow: 0 16px 32px rgba(42, 39, 48, 0.12);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   pointer-events: none; 
   z-index: 9999;
   color: #2A2730;

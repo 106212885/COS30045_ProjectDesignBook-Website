@@ -5,23 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Beyond the Fatality Count | Australia Road Hospitalisations 2011–2021</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+  <!-- Project Stylesheets: Core styling and accessible toolbar rules -->
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/accessibility.css" />
 </head>
 <body>
 
+  <!-- ================================================================================================
+       ACCESSIBILITY COMPONENT: SKIP-TO-CONTENT LINK (WCAG 2.4.1 Bypass Blocks)
+       Allows keyboard/screen-reader users to jump directly to primary content without tabbing 
+       through navigation links on every page load.
+       ================================================================================================ -->
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
+  <!-- Mobile Drawer Toggle Button -->
   <button id="mobile-nav-toggle" class="mobile-nav-toggle glass-pill" aria-label="Toggle Navigation Menu">
     <span class="hamburger-bar" aria-hidden="true"></span>
     <span class="hamburger-bar" aria-hidden="true"></span>
     <span class="hamburger-bar" aria-hidden="true"></span>
   </button>
 
+  <!-- Top Sticky Course & Team Identification Banner -->
   <header id="top-team-banner" class="glass-banner">
     <div class="banner-content">
       <span class="team-badge">COS30045 Data Visualisation</span>
@@ -29,12 +33,14 @@
     </div>
   </header>
 
+  <!-- Accessibility Toolbar: Font enlargement controls with polite audio notifications -->
   <div class="a11y-toolbar glass-pill" role="region" aria-label="Font Size Controls">
     <button id="btn-text-decrease" class="a11y-btn" title="Decrease Font Size">A-</button>
     <button id="btn-text-increase" class="a11y-btn" title="Increase Font Size">A+</button>
   </div>
   <div id="a11y-toast" class="toast-notification" role="status" aria-live="polite"></div>
 
+  <!-- Left Sticky Navigation Rail (Enables section jumping and continuous progress tracking) -->
   <nav id="left-sticky-nav" class="left-sticky-nav" aria-label="Section Navigation">
     <div class="nav-track-wrapper">
       <div class="nav-track-line" aria-hidden="true"></div>
@@ -51,66 +57,109 @@
     </div>
   </nav>
 
+  <!-- ================================================================================================
+       MAIN STORYTELLING CONTENT CONTAINER
+       SPECIAL INDEX: tabindex="-1" allows JavaScript focus() to navigate directly here without 
+       inserting the container into standard keyboard tab cycles.
+       ================================================================================================ -->
   <main id="main-content" class="main-content" tabindex="-1">
 
+    <!-- HERO SECTION: Thematic Introduction & Section Preview Slideshow -->
     <section id="hero" class="scrolly-section hero-section">
       <div class="hero-text-container">
         <p class="eyebrow-tag">AUSTRALIAN ROAD SAFETY REPORT • 2011–2021</p>
         <h1 class="hero-title">Beyond the Fatality Count</h1>
         <h2 class="hero-subtitle">Shifting the Focus from Deaths to Morbidity</h2>
         <p class="hero-story">
-          Road-safety debate usually centres on deaths, but most people injured in a crash survive. Those people are easy to overlook. In 2021 alone, Australian data recorded <strong>39,505 hospitalisations</strong> from road crashes. This project visualises non-fatal injuries, measures their severity, and compares states fairly to help policymakers decide where prevention efforts are needed most.
+          Road-safety debate usually centres on fatalities, yet thousands more survive and spend days in hospital—with <strong>39,505 hospitalisations</strong> recorded in 2021 alone (<strong>410,884</strong> across 2011–2021). This visualisation tracks non-fatal injury trends, compares trauma severity, and adjusts state rates per 100,000 people to guide targeted road-safety prevention.
         </p>
       </div>
 
+      <!-- Hero Media Frame: Pauseable slideshow previewing G1, G2, and G3 themes -->
       <div id="hero-media-frame" class="hero-media-frame glass-card">
         <div class="window-controls">
           <span class="win-dot" aria-hidden="true"></span><span class="win-dot" aria-hidden="true"></span><span class="win-dot" aria-hidden="true"></span>
-          <span class="window-title">AIHW & BITRE Trauma Surveillance</span>
+          <span class="window-title">BITRE &amp; AIHW Hospitalised Injury Surveillance (2011–2021)</span>
           <button type="button" id="slide-toggle" class="slide-toggle">Pause slideshow</button>
         </div>
+
         <div id="slideshow-container" class="slideshow-container">
-          <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=1400&q=80');">
-            <div class="slide-caption">Urban Mobility & Traffic Infrastructure</div>
+          <!-- Slide 1: Previews G1 (Trends by Road User) -->
+          <div class="slide slide-theme-g1 active">
+            <div class="slide-caption">
+              <span class="slide-tag">G1 • WHO IS BEING HOSPITALISED?</span>
+              <strong>Pedal Cyclists Rose +51% While Pedestrians Fell -15%</strong>
+              <span class="slide-sub">Cases grew from 34,033 (2011) to 39,505 (2021); car occupants make up 46.9%.</span>
+            </div>
           </div>
-          <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1400&q=80');">
-            <div class="slide-caption">Vulnerable Road Users: Pedal Cyclist Surge</div>
+
+          <!-- Slide 2: Previews G2 (Injury Severity & Outcomes) -->
+          <div class="slide slide-theme-g2">
+            <div class="slide-caption">
+              <span class="slide-tag">G2 • INJURY SEVERITY &amp; OUTCOMES</span>
+              <strong>Pedestrians Stay Longest (9.1 Days) &amp; Highest Mortality (2.1%)</strong>
+              <span class="slide-sub">Compared with 2.9 bed days and 0.19% mortality for pedal cyclists (2011–2020).</span>
+            </div>
+          </div>
+
+          <!-- Slide 3: Previews G3 (State Rates per 100,000) -->
+          <div class="slide slide-theme-g3">
+            <div class="slide-caption">
+              <span class="slide-tag">G3 • STATE RATES PER 100,000 PEOPLE</span>
+              <strong>Northern Territory Recorded 286.1 per 100k in 2021</strong>
+              <span class="slide-sub">More than double NSW (111.2 per 100k)—showing why raw counts mislead.</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- SECTION 01: OVERVIEW & AUDIENCE -->
     <section id="sec-overview" class="scrolly-section">
       <div class="section-container">
         <div class="section-header">
-          <span class="section-number">01 / PURPOSE & AUDIENCE</span>
+          <span class="section-number">01 / PURPOSE &amp; AUDIENCE</span>
           <h2 class="section-title">Answering Three Key Questions</h2>
           <p class="section-lead">
-            Designed for policymakers, public-health analysts, and the general public, this visualisation explores a decade of inpatient road trauma to answer three critical questions.
+            Designed for road-safety policymakers, public-health analysts, and the general public, this visualisation explores 86,140 traffic crash records from BITRE and ABS population data (2011–2021) to answer three critical questions.
           </p>
         </div>
         <div class="grid-4-col">
-          <div class="glass-card task-card"><div class="card-icon">01</div><h3>10-Year Trends</h3><p>How have hospitalisations changed, and which road user groups are rising or falling?</p></div>
-          <div class="glass-card task-card"><div class="card-icon">02</div><h3>Injury Severity</h3><p>Which road user groups suffer the most serious injuries based on hospital bed days?</p></div>
-          <div class="glass-card task-card"><div class="card-icon">03</div><h3>State Comparisons</h3><p>How do states and territories compare once population size is taken into account?</p></div>
+          <div class="glass-card task-card">
+            <div class="card-icon">01</div>
+            <h3>10-Year Trends (G1)</h3>
+            <p>How have hospitalisations from road crashes changed between 2011 and 2021, and which road user groups are rising or falling?</p>
+          </div>
+          <div class="glass-card task-card">
+            <div class="card-icon">02</div>
+            <h3>Injury Severity (G2)</h3>
+            <p>Which road user groups have the most serious injuries, using average bed days per case and the share of cases that end in death?</p>
+          </div>
+          <div class="glass-card task-card">
+            <div class="card-icon">03</div>
+            <h3>State Comparisons (G3)</h3>
+            <p>How do states and territories compare using hospitalisations per 100,000 people once population size is taken into account?</p>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- SECTION 02: QUESTION 1 (G1) -->
     <section id="sec-national" class="scrolly-section">
       <div class="section-container">
         <div class="section-header">
-          <span class="section-number">02 / QUESTION 1: OVERALL TREND</span>
-          <h2 class="section-title">The National Trend is Not the Same for Everyone</h2>
+          <span class="section-number">02 / QUESTION 1: CHANGE OVER TIME BY ROAD USER GROUP</span>
+          <h2 class="section-title">G1: Who is being hospitalised? Trends by road user, 2011–2021</h2>
           <p class="section-lead">
-            Between 2011 and 2021, hospitalisations rose from 34,033 to 39,505. However, this national total hides divergent trends: <strong>pedal cyclists rose by ~51%</strong> while <strong>pedestrians fell by ~15%</strong>.
+            Yearly hospitalisations rose from <strong>34,033 in 2011</strong> to a peak of <strong>39,866 in 2019</strong>, dipped to <strong>37,966 in 2020</strong>, and reached <strong>39,505 in 2021</strong>. However, a single national total hides divergent trends: <strong>pedal cyclists rose by ~51%</strong> (5,391 to 8,163) and <strong>motorcyclists by ~17%</strong>, while <strong>pedestrians fell by ~15%</strong> and <strong>bus and heavy transport fell by ~17%</strong>.
           </p>
         </div>
         
+        <!-- Summary KPI Cards: Dynamically updated by interactive.js -->
         <div class="grid-4-col" style="margin-bottom: 24px;">
           <div class="glass-card metric-card">
             <p class="metric-value" id="kpi-total">0</p>
-            <p class="metric-label">Total Hospitalisations (2011-2021)</p>
+            <p class="metric-label">Total Hospitalisations (2011–2021)</p>
           </div>
           <div class="glass-card metric-card">
             <p class="metric-value" id="kpi-highest-val" style="color: #D55E00;">0</p>
@@ -122,67 +171,81 @@
           </div>
         </div>
 
+        <!-- D3 Chart Container Card -->
         <div class="glass-card">
-          <!-- Subtle Interaction Prompt -->
           <p style="text-align: center; font-size: 0.9rem; font-style: italic; color: var(--c-text-muted); margin-bottom: 16px;">
-            <span aria-hidden="true">👆</span> Hover or tap the chart to view exact yearly counts.
+            <span aria-hidden="true">👆</span> Filter road user groups below, or hover / use Left &amp; Right arrow keys on the chart to view exact yearly counts.
           </p>
 
+          <!-- Containers dynamically populated by D3 script -->
           <div id="filter-container"></div>
           <div id="chart-container" style="width: 100%; max-width: 1000px; margin: 0 auto; position: relative;"></div>
           
-          <!-- Data Break Caveat Note -->
           <p style="font-size: 0.85rem; color: var(--c-text-muted); text-align: center; margin-top: 15px;">
-            *Note: Breaks in series occurred in 2012 (VIC) and 2017 (NSW) due to changes in emergency department counting rules.
+            *Note: Victoria stopped counting emergency-department-only cases from July 2012 (lowering national cases by ~2.8%), and NSW did the same from June 2017.
           </p>
         </div>
       </div>
     </section>
 
+    <!-- SECTION 03: QUESTION 2 (G2) -->
     <section id="sec-users" class="scrolly-section">
       <div class="section-container">
         <div class="section-header">
-          <span class="section-number">03 / QUESTION 2: SEVERITY</span>
-          <h2 class="section-title">Volume vs. Severity: A Critical Difference</h2>
+          <span class="section-number">03 / QUESTION 2: SERIOUSNESS OF INJURIES BY ROAD USER</span>
+          <h2 class="section-title">G2: Pedestrians stay longest and are most likely to die</h2>
           <p class="section-lead">
-            How many people are hurt and how badly they are hurt are different things. Pedestrians are a small share of total cases, but they stay an average of 9.1 days in hospital compared to 2.9 days for pedal cyclists.
+            How many people are hurt and how badly they are hurt are different things. Car occupants make up the biggest share of cases (46.9% in 2021), but <strong>pedestrians suffer the most serious injuries</strong>—staying an average of <strong>9.1 bed days per case</strong> with <strong>2.1% of cases ending in death</strong> (2011–2020), compared with <strong>2.9 bed days</strong> and <strong>0.19%</strong> for pedal cyclists.
           </p>
         </div>
         <div class="glass-card">
-          <p style="text-align:center; color: #5E5A66; padding: 40px;">[Chart 2 will go here]</p>
+          <p style="text-align:center; color: #5E5A66; padding: 40px;">[Chart G2 (2011–2020 Bed Days per Case &amp; Mortality %) will go here]</p>
         </div>
       </div>
     </section>
 
+    <!-- SECTION 04: QUESTION 3 (G3) -->
     <section id="sec-equity" class="scrolly-section">
       <div class="section-container">
         <div class="section-header">
-          <span class="section-number">04 / QUESTION 3: STATE COMPARISONS</span>
-          <h2 class="section-title">Fair Comparisons per 100,000 People</h2>
+          <span class="section-number">04 / QUESTION 3: STATES COMPARED BY POPULATION</span>
+          <h2 class="section-title">G3: Hospitalisations per 100,000 people by state</h2>
           <p class="section-lead">
-            A big state will almost always report more cases than a small one. Adjusting for population gives a fairer basis for deciding where to focus prevention funding.
+            A big state will almost always report more raw cases than a small one. Joining BITRE state hospitalisations with ABS Table 4 resident population reveals that in 2021, the <strong>Northern Territory recorded 286.1 hospitalisations per 100,000 people</strong>—more than double <strong>New South Wales (111.2 per 100,000)</strong>.
           </p>
         </div>
         <div class="glass-card">
-          <p style="text-align:center; color: #5E5A66; padding: 40px;">[Chart 3 will go here]</p>
+          <p style="text-align:center; color: #5E5A66; padding: 40px;">[Chart G3 (State Hospitalisations per 100,000 People) will go here]</p>
         </div>
       </div>
     </section>
 
+    <!-- SECTION 05: DATA QUALITY, LIMITATIONS & ETHICS -->
     <section id="sec-quality" class="scrolly-section">
       <div class="section-container">
         <div class="section-header">
-          <span class="section-number">05 / METHODOLOGY</span>
-          <h2 class="section-title">Data Quality & Limitations</h2>
+          <span class="section-number">05 / DATA GOVERNANCE, QUALITY &amp; ETHICS</span>
+          <h2 class="section-title">Data Quality, Limitations &amp; Ethical Framing</h2>
+          <p class="section-lead">
+            Cleaned and validated in KNIME across 86,140 Traffic rows against published BITRE Table 1 totals (zero discrepancy across all 11 years), our analysis accounts for four critical data constraints.
+          </p>
         </div>
         <div class="grid-2x2">
           <div class="glass-card caveat-card">
-            <div class="caveat-header"><span class="caveat-badge">01</span><h3>Inclusion Breaks</h3></div>
-            <p>Victoria stopped counting emergency-department-only cases in July 2012, and NSW did the same in June 2017. Counts before and after these dates are not fully comparable.</p>
+            <div class="caveat-header"><span class="caveat-badge">01 • SERIES BREAKS</span><h3>VIC (2012) &amp; NSW (2017) Rule Changes</h3></div>
+            <p>Victoria stopped counting emergency-department-only cases from 1 July 2012 (lowering national cases by ~2.8% in 2012), and NSW did the same from June 2017. Figures before and after these dates are not fully comparable.</p>
           </div>
           <div class="glass-card caveat-card">
-            <div class="caveat-header"><span class="caveat-badge">02</span><h3>Incomplete Mortality Data</h3></div>
-            <p>"Died cases" are recorded as 0 in every 2021 row, which appears to be missing data. Therefore, mortality analysis is strictly constrained to 2011–2020.</p>
+            <div class="caveat-header"><span class="caveat-badge">02 • MORTALITY DATA</span><h3>Incomplete 2020–2021 Death Records</h3></div>
+            <p>"Died cases" (death within 30 days of admission) fell from 194 in 2019 to 88 in 2020 and 0 in every 2021 row. Because 2021 mortality is incomplete (`died_data_valid = N`), G2 mortality analysis is strictly constrained to 2011–2020.</p>
+          </div>
+          <div class="glass-card caveat-card">
+            <div class="caveat-header"><span class="caveat-badge">03 • STATE &amp; RATE SCOPE</span><h3>Crude Rates &amp; 30-Day Death Exclusions</h3></div>
+            <p>The BITRE state file excludes patients who died within 30 days (e.g., 33,553 state cases vs 34,033 national cases in 2011) and suppresses small counts as "n.p.". All population rates are crude rates using ABS June quarter estimates, unadjusted for age or sex.</p>
+          </div>
+          <div class="glass-card caveat-card">
+            <div class="caveat-header"><span class="caveat-badge">04 • ETHICAL CONSIDERATIONS</span><h3>First Nations Data &amp; Non-Blame Framing</h3></div>
+            <p>We did not chart the separate BITRE First Nations dataset because matching population denominators were unavailable to compute fair rates, and raw counts can misrepresent risk. Differences across states and road users highlight systemic prevention needs, not individual fault.</p>
           </div>
         </div>
       </div>
@@ -191,15 +254,18 @@
   </main>
 
   <footer class="site-footer">
-    <p>COS30045 Data Visualisation Project • Data Sources: BITRE & ABS Table 4</p>
+    <p>COS30045 Data Visualisation Project • Team [Trace] • Data Sources: BITRE (AIHW NHMD) &amp; ABS Table 4 (2011–2021)</p>
   </footer>
 
+  <!-- Modular Scripts: Loaded in dependency order -->
   <script src="js/constants.js"></script>
   <script src="js/accessibility.js"></script>
   <script src="js/main.js"></script>
   
+  <!-- D3.js Library v7 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
   
+  <!-- Visualisation & Interaction Modules -->
   <script src="js/national_trends_chart.js"></script>
   <script src="js/interactive.js"></script>
   <script src="js/loaded_data.js"></script>
