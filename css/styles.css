@@ -158,7 +158,7 @@ body {
   justify-content: flex-start; /* Stops vertical centering from adding extra top gap */
   align-items: center;
   text-align: center;
-  padding-top: 6.2rem;         /* Reduced from 10rem so "AUSTRALIAN ROAD SAFETY REPORT" sits closer to top banner */
+  padding-top: 6.2rem;         /* Clean spacing below top banner */
 }
 
 .hero-text-container {
@@ -206,7 +206,7 @@ body {
 }
 
 /* ==========================================================================
-   HERO SLIDESHOW FRAME & COMPACT CAPTION CONTAINER (SHRUNK BY ~20%)
+   HERO SLIDESHOW FRAME & CAPTION CONTAINER (+20% SCALED FOR READABILITY)
    ========================================================================== */
 .hero-media-frame {
   width: min(1240px, 100%);
@@ -266,7 +266,7 @@ body {
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  padding: 16px 20px;
+  padding: 18px 24px;
 }
 
 /* Local images in ../images/ folder with built-in offline gradient fallbacks */
@@ -293,49 +293,49 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(25, 22, 32, 0.55) 0%, rgba(25, 22, 32, 0.08) 35%, transparent 100%);
+  background: linear-gradient(to top, rgba(25, 22, 32, 0.58) 0%, rgba(25, 22, 32, 0.08) 38%, transparent 100%);
 }
 
 .slide.active { opacity: 1; transform: scale(1); }
 
-/* Compact inner slide container (20% smaller width, padding, and text) */
+/* Slide Caption Container: Scaled +20% for comfortable readability */
 .slide-caption {
   position: relative;
   z-index: 2;
-  background: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.65);
   padding: 8px 13px;
-  border-radius: 10px;
-  max-width: 400px;
+  border-radius: 12px;
+  max-width: 450px;
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
   color: var(--c-text-main);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.16);
 }
 
 .slide-tag {
-  font-size: 0.64rem;
+  font-size: 0.70rem;
   font-weight: 800;
   letter-spacing: 0.09em;
   color: #5B4182;
 }
 
 .slide-caption strong {
-  font-size: 0.84rem;
+  font-size: 0.95rem;
   font-weight: 800;
   color: var(--c-text-main);
-  line-height: 1.22;
+  line-height: 1.25;
 }
 
 .slide-sub {
-  font-size: 0.74rem;
+  font-size: 0.89rem;
   color: var(--c-text-muted);
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
 /* GLASS CARDS & SECTIONS */
