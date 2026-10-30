@@ -200,6 +200,13 @@
         </div>
         <div class="glass-card">
           <p style="text-align:center; color: #5E5A66; padding: 40px;">[Chart G2 (2011–2020 Bed Days per Case &amp; Mortality %) will go here]</p>
+          <!-- Project Stand Up 3-->
+            <span aria-hidden="true">👆</span> Hover over a row, or press Tab to move between road users and see exact values.
+          </p>
+          <div id="severity-chart-container" style="width: 100%; max-width: 1100px; margin: 0 auto; position: relative;"></div>
+          <p style="font-size: 0.85rem; color: var(--c-text-muted); text-align: center; margin-top: 15px;">
+            *Death percentages use 2011–2020 only. Died cases are zero in every 2021 row of the source data, which looks like missing data, not a true absence of deaths.
+          </p>
         </div>
       </div>
     </section>
@@ -216,6 +223,17 @@
         </div>
         <div class="glass-card">
           <p style="text-align:center; color: #5E5A66; padding: 40px;">[Chart G3 (State Hospitalisations per 100,000 People) will go here]</p>
+          <!-- Project Stand Up 3-->
+            <span aria-hidden="true">👆</span> Choose a state to compare with the highest state, then hover or use Left &amp; Right arrow keys on the chart.
+          </p>
+          <div class="compare-control">
+            <label for="state-compare-select">Compare with:</label>
+            <select id="state-compare-select"></select>
+          </div>
+          <div id="state-chart-container" style="width: 100%; max-width: 1000px; margin: 0 auto; position: relative;"></div>
+          <p style="font-size: 0.85rem; color: var(--c-text-muted); text-align: center; margin-top: 15px;">
+            *Rates are crude (not adjusted for age or sex). Dashed lines mark when Victoria (2012) and NSW (2017) stopped counting emergency-department-only cases, so trends across those years are not directly comparable.
+          </p>
         </div>
       </div>
     </section>
